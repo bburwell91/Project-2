@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": null,
-    "database": "exampledb",
+    "password": "Wildflowers90!",
+    "database": "xpozed_db",
     "host": "localhost",
     "dialect": "mysql"
   },
