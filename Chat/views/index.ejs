@@ -5,21 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Chat App</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/flatly/bootstrap.min.css" rel="stylesheet">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
     <script defer src="script.js"></script>
 </head>
 
 <body>
-    <div id="room-container">
-        <!-- For each 'room' in the rooms object create a new div and join link -->
-        <% Object.keys(rooms).forEach(room => { %>
-            <div><%= room %></div>
-            <a href="/<%= room %>">Join</a>
-        <% }) %>
+    <div id="chatroom-bar">
+        <div id="room-container">
+            <!-- For each 'room' in the rooms object create a new div and join link -->
+            <% Object.keys(rooms).forEach(room => { %>
+                <div><%= room %></div>
+                <a href="/<%= room %>">Join</a>
+            <% }) %>
+        </div>
+        <form id="room-form" action="/room" method="POST">
+            <input name="room" type="text" required>
+            <button type="submit">New Room</button>
+        </form>
     </div>
-    <form action="/room" method="POST">
-        <input name="room" type="text" required>
-        <button type="submit">New Room</button>
-    </form>
 </body>
 </html>

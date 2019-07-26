@@ -1,0 +1,81 @@
+body {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+#chatroom-bar {
+    text-align: center;
+    width: 25%;
+}
+
+#room-container {
+    padding-top: 5px;
+}
+
+#room-container div {
+    padding-bottom: 5px;
+}
+
+#room-container a {
+    padding-bottom: 5px;
+}
+
+#post-container {
+    width: 70%;
+}
+
+#display-posts {
+    margin-top: 100px;
+}
+
+#display-posts div {
+    border: 1px solid #000;
+    padding: 20px;
+    margin-bottom: 50px;
+}
+
+#message-container {
+    margin-top: 30px;
+    height: 1000px;
+    overflow: scroll;
+    width: 70%;
+    max-width: 1000px;
+}
+
+#message-container div {
+    background-color: #1e90ff;
+    border-radius: 20px;
+    clear: both;
+    display: block;
+    float: right;
+    margin-bottom: 5px;
+    padding: 10px;
+    width: 20%;
+}
+
+#message-container div:nth-child(2n) {
+    background-color: #00FF00;
+    border-radius: 20px;
+    clear: both;
+    display: block;
+    float: right;
+    margin-bottom: 5px;
+    padding: 10px;
+    width: 20%;
+}
+
+#send-container {
+    position: fixed;
+    margin-bottom: 30px;
+    bottom: 0;
+    background-color: white;
+    max-width: 1000px;
+    width: 70%;
+    display: flex;
+}
+
+#message-input {
+    flex-grow: 1;
+}
