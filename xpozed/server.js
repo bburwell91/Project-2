@@ -1,10 +1,10 @@
 require("dotenv").config();
 var express = require("express");
-var exphbs = require("express-handlebars");
+// var exphbs = require("express-handlebars");
 var db = require("./models");
 var app = express();
-var http = require('http').createServer(app);
-var io = require('socket.io')(http);
+var http = require("http").createServer(app);
+var io = require("socket.io")(http);
 var PORT = process.env.PORT || 3003;
 
 // Middleware
@@ -12,14 +12,18 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
 
-// Handlebars
-app.engine(
-  "handlebars",
-  exphbs({
-    defaultLayout: "main"
-  })
-);
-app.set("view engine", "handlebars");
+// // Handlebars
+// app.engine(
+//   "handlebars",
+//   exphbs({
+//     defaultLayout: "main"
+//   })
+// );
+// app.set("view engine", "handlebars");
+
+// similar to handlebars, allows you to use ejs in the views folder
+app.set("views", "./views");
+app.set("view engine", "ejs");
 
 // Routes
 require("./routes/apiRoutes")(app);
@@ -31,17 +35,33 @@ var syncOptions = { force: false };
 // clearing the `testdb`
 if (process.env.NODE_ENV === "test") {
   syncOptions.force = true;
-}
+};
 
-io.on('connection', function (socket){
-  console.log('a user connected');
-  socket.on('disconnect', function(){
-    console.log('a user disconnected')
-  })
-  socket.on('chat message', function(msg) {
-    console.log('message: ' + msg);
-  })
+// on connection, create a new socket for the new user
+io.on('connection', socket => {
+  socket.on('new-user', (room, name) => {
+      socket.join(room);
+      rooms[room].users[socket.id] = name;
+      socket.to(room).broadcast.emit('user-connected', name);
+  });
+  socket.on('send-chat-message', (room, message) => {
+      socket.to(room).broadcast.emit('chat-message', { message: message, name: rooms[room].users[socket.id] });
+  });
+  socket.on('disconnect', () => {
+      getUserRooms(socket).forEach(room => {
+          socket.to(room).broadcast.emit('user-disconnected', rooms[room].users[socket.id]);
+          delete rooms[room].users[socket.id];
+      })
+  });
 });
+
+// to find out which rooms a user is in, only allowing a user to be in one room at a time
+function getUserRooms(socket) {
+  return Object.entries(rooms).reduce((names, [name, room]) => {
+      if (room.users[socket.id] != null) names.push(name);
+      return names;
+  }, []);
+};
 
 
 // Starting the server, syncing our models ------------------------------------/
