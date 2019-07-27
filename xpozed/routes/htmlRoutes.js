@@ -3,9 +3,18 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
+<<<<<<< HEAD
+    // db..findAll({}).then(function(dbExamples) {
+      res.render("index", {
+        msg: "Welcome!",
+        examples: []
+      });
+    // });
+=======
     res.render("index", {
       title: "Home Page"
     });
+>>>>>>> master
   });
 
   // Load chatroom page

@@ -8,10 +8,17 @@ module.exports = function(app) {
     });
   });
 
+<<<<<<< HEAD
+  // Create a new chatroom
+  app.post("/api/createchatrooms", function(req, res) {
+    db.Chatrooms.create(req.body).then(function(dbChatrooms) {
+      res.json(dbChatrooms);
+=======
   // Create a new example
   app.post("/api/example", function(req, res) {
     db.Example.create(req.body).then(function(dbExample) {
       res.json(dbExample);
+>>>>>>> master
     });
   });
 
