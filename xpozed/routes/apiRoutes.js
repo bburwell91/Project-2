@@ -31,7 +31,7 @@ module.exports = function(app) {
   });
 
   // Create a new chatroom
-  app.post("/api/chatrooms", function(req, res) {
+  app.post("/api/createchatrooms", function(req, res) {
     db.Chatrooms.create(req.body).then(function(dbChatrooms) {
       res.json(dbChatrooms);
     });

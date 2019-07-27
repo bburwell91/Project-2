@@ -5,19 +5,32 @@
 //   });
 //   return Example;
 // };
-
+/*
 module.exports = function(sequelize, DataTypes) {
   var Users = sequelize.define("User", {
-    text: DataTypes.STRING,
-    description: DataTypes.TEXT
+    username: DataTypes.STRING,
+    Password: DataTypes.STRING
   });
   return Users;
 };
 
 module.exports = function(sequelize, DataTypes) {
   var Chatrooms = sequelize.define("Chatroom", {
-    text: DataTypes.STRING,
-    description: DataTypes.TEXT
+    chatroom_name: DataTypes.String,
+    description: DataTypes.TEXT,
+  
   });
   return Chatrooms;
 };
+
+module.exports = function(sequelize, DataTypes) {
+  var Comments= sequelize.define("Comments", {
+    text: DataTypes.STRING,
+    description: DataTypes.TEXT
+    
+  });
+  return Comments;
+};
+*/
+
+  
