@@ -28,7 +28,7 @@ module.exports = function(app) {
     rooms[req.body.room] = { users: {} };
     res.redirect(req.body.room);
     // Send message that new room was created using the room-created function
-    socket.emit('room-created', req.body.room)
+    io.emit('room-created', req.body.room)
   });
 
   // // Render 404 page for any unmatched routes
