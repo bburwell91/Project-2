@@ -1,3 +1,8 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
 body {
   padding: 0;
   margin: 0;
@@ -5,13 +10,41 @@ body {
   justify-content: center;
 }
 
+#container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.logo-container {
+  background-color: #e3e3e3;
+  height: 600px;
+  width: 100%;
+  margin: 0 auto;
+  display: block;
+}
+
+.logo {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+}
+
+.room-form {
+  float: left;
+  display: block;
+}
+
+/*****************************************CHAT ROOM*********************************************/
+
 #chatroom-bar {
   text-align: center;
-  width: 25%;
 }
 
 #room-container {
   padding-top: 5px;
+  display: block;
 }
 
 #room-container div {
@@ -37,38 +70,40 @@ body {
 }
 
 #message-container {
+  background-color: #FFF;
   margin-top: 30px;
-  height: 1000px;
+  height: 630px;
   overflow: scroll;
   width: 70%;
   max-width: 1000px;
+  overflow-x: hidden;
 }
 
 #message-container div {
-  background-color: #1e90ff;
-  border-radius: 20px;
+  background-color: #FFA;
+  box-sizing: border-box;
   clear: both;
   display: block;
   float: right;
-  margin-bottom: 5px;
-  padding: 10px;
-  width: 20%;
+  margin-top: 5px;
+  padding: 10px 0 10px 10px;
+  width: 100%;
 }
 
 #message-container div:nth-child(2n) {
-  background-color: #00FF00;
+  background-color: #FFF;
   border-radius: 20px;
   clear: both;
   display: block;
   float: right;
   margin-bottom: 5px;
   padding: 10px;
-  width: 20%;
+  width: 100%;
 }
 
 #send-container {
   position: fixed;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
   bottom: 0;
   background-color: white;
   max-width: 1000px;

@@ -8,7 +8,7 @@ const messageInput = document.getElementById('message-input');
 // actions for the fields that can be submitted. first a prompt asking for your name, and then a listener for the submit button to send messages
 if (messageForm != null) {
     const name = prompt('What is your name?');
-    appendMessage('You joined');
+    appendMessage('Welcome to the ' + roomName + ' chatroom!');
     socket.emit('new-user', roomName, name);
 
     messageForm.addEventListener('submit', e => {

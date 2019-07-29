@@ -4,22 +4,13 @@ var express = require("express");
 var db = require("./models");
 var app = express();
 var http = require("http").createServer(app);
-var io = require("socket.io")(http);
-var PORT = process.env.PORT || 3003;
+global.io = require("socket.io")(http);
+var PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(express.static("public"));
-
-// // Handlebars
-// app.engine(
-//   "handlebars",
-//   exphbs({
-//     defaultLayout: "main"
-//   })
-// );
-// app.set("view engine", "handlebars");
+app.use(express.static(__dirname + '/public'));
 
 // similar to handlebars, allows you to use ejs in the views folder
 app.set("views", "./views");
@@ -62,7 +53,6 @@ function getUserRooms(socket) {
       return names;
   }, []);
 };
-
 
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function() {
