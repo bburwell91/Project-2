@@ -3,6 +3,7 @@ var express = require("express");
 // var exphbs = require("express-handlebars");
 var db = require("./models");
 var app = express();
+var bodyParser = require("body-parser");
 var http = require("http").createServer(app);
 global.io = require("socket.io")(http);
 var PORT = process.env.PORT || 3000;

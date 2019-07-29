@@ -7,6 +7,7 @@ var basename = path.basename(module.filename);
 var env = process.env.NODE_ENV || "development";
 var config = require(__dirname + "/../config/config.json")[env];
 var db = {};
+var sequelize;
 
 if (config.use_env_variable) {
   var sequelize = new Sequelize(process.env[config.use_env_variable]);
@@ -18,6 +19,11 @@ if (config.use_env_variable) {
     config
   );
 }
+
+// Show that database is connected
+sequelize.authenticate()
+  .then(() => console.log("Database connected..."))
+  .catch(err => console.log("Error: " + err));
 
 fs.readdirSync(__dirname)
   .filter(function(file) {

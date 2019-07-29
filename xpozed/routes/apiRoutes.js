@@ -1,26 +1,56 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  // Get all examples
-  app.get("/api/examples", function(req, res) {
-    db.Example.findAll({}).then(function(dbExample) {
-      res.json(dbExample);
+  // Get all chatrooms
+  app.get("/api/chatrooms/", function(req, res) {
+    db.Chatroom.findAll({}).then(function(dbChatroom) {
+      res.json(dbChatroom);
+    });
+  });
+
+  // Get route for returning posts of a specific chatroom
+  app.get("/api/chatrooms/:name", function(req, res) {
+    db.Chatroom.findAll({
+      where: {
+        name: req.params.name
+      }
+    }).then(function(dbChatroom) {
+      res.json(dbChatroom);
+    });
+  });
+
+  // Get route for retrieving a single post
+  app.get("/api/chatrooms/:id", function(req, res) {
+    db.Chatroom.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbChatroom) {
+      res.json(dbChatroom);
     });
   });
 
   // Create a new chatroom
-  app.post("/api/createchatrooms", function(req, res) {
-    db.Chatrooms.create(req.body).then(function(dbChatrooms) {
-      res.json(dbChatrooms);
+  app.post("/api/chatrooms", function(req, res) {
+    console.log(req.body);
+    db.Chatroom.create({
+      id: req.body.id,
+      name: req.body.name,
+      createdAt: req.body.createdAt,
+      updatedAt: req.body.updatedAt
+    }).then(function(dbChatroom) {
+      res.json(dbChatroom);
     });
   });
 
   // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.json(dbExample);
+  app.delete("/api/chatrooms/:id", function(req, res) {
+    db.Chatroom.destroy({ where: { id: req.params.id } }).then(function(dbChatroom) {
+      res.json(dbChatroom);
     });
   });
+
+
 };
 
 // Code below is for the chatrooms once the database is set up
