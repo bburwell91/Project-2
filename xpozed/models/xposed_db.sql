@@ -2,4 +2,3 @@ DROP DATABASE IF EXISTS xposed_db;
 
 CREATE DATABASE xposed_db;
 
-
