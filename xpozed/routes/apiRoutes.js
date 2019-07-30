@@ -39,6 +39,7 @@ module.exports = function(app) {
       // createdAt: req.body.createdAt,
       // updatedAt: req.body.updatedAt
     }).then(function(dbChatroom) {
+      rooms[req.body.name] = { users: {} };
       res.redirect("/" + req.body.name);
     });
   });

@@ -7,8 +7,13 @@ module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
     db.Chatroom.findAll().then(function(chatrooms){
+      chatrooms.forEach(element => {
+        if (!(element.name in rooms)) {
+          rooms[element.name] = { users: {} };
+          console.log(element.name);
+        }
+      });
       res.render("index", { rooms: chatrooms });
-
     });
   });
 
