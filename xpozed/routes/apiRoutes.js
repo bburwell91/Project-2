@@ -47,10 +47,25 @@ module.exports = function(app) {
   app.post("/api/chatroom/comments", function(req, res) {
     db.Comments.create({
       text: req.body.message,
-      UserId: 1,
-      ChatroomId: 1
+      UserId: req.session.UID,
+      ChatroomId: req.body.id
     });
-  })
+  });
+
+  app.post("/api/login", function(req, res) {
+    db.Users.findOne({
+      where: {username: req.body.username, password: req.body.password }
+    }).then(function(user){
+      if (!user){
+        console.log("login failed");
+        res.redirect("/");
+      } else {
+        //start session
+        req.session.UID = user.id;
+        res.redirect("/");
+      }
+    });
+  });
 
   // Delete an example by id
   app.delete("/api/chatrooms/:id", function(req, res) {
@@ -58,8 +73,6 @@ module.exports = function(app) {
       res.json(dbChatroom);
     });
   });
-
-
 };
 
 // Code below is for the chatrooms once the database is set up

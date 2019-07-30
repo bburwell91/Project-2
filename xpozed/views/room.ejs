@@ -7,8 +7,9 @@
     <title>Welcome to the Chat!</title>
     <link rel="stylesheet" type="text/css" href="styles/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script>
-        const roomName = "<%= roomName %>"
+    <script type="text/javascript">
+        const roomName = "<%= roomName %>";
+        const roomId = "<%= roomId %>";
     </script>
     <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
     <script defer src="index.js"></script>
