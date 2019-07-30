@@ -10,22 +10,29 @@ module.exports = function(app) {
       chatrooms.forEach(element => {
         if (!(element.name in rooms)) {
           rooms[element.name] = { users: {} };
-          console.log(element.name);
+          // console.log(element.name);
         }
       });
-      res.render("index", { rooms: chatrooms });
+      console.log(req.session.UID);
+      res.render("index", { rooms: chatrooms, message: "" });
     });
   });
 
   // entering a chatroom
+  //app.get('/:room/:rid', (req, res) => {
   app.get('/:room', (req, res) => {
+
     // if not a chatroom, redirect to index
     if (rooms[req.params.room] == null) {
         // return res.redirect('/');
     };
 
+    db.Chatroom.findOne({ where : { id : req.params.room }}).then(function(room) {
+      //db.Comments.findAll where chatroomId: name.id
+      //foreach loop to display line  of the chat
+      res.render('room', { roomName: room.name, roomId: req.params.room });
+    });
     // else enter chatroom
-    res.render('room', { roomName: req.params.room });
   });
 
   // post method running the room-created function (see script.js)

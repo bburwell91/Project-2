@@ -22,7 +22,7 @@
         <div class="room-form">
             <!-- For each 'room' in the rooms object create a new div and join link -->
             <% rooms.forEach(function(room) { %>
-                <a href="/<%= room.name %>"><%= room.name %></a>
+                <a href="/<%= room.id%>"><%= room.name %></a>
                 <br>
             <% }) %>
             <form id="room-form" action="/api/chatrooms" method="POST">
@@ -31,5 +31,24 @@
             </form>
         </div>
     </div>
+   
+
+<h1>Login</h1>
+<%- message %>
+<form method="post" action="/api/login">
+  <p>
+    <label>Username:</label>
+    <input type="text" name="username">
+  </p>
+  <p>
+    <label>Password:</label>
+    <input type="text" name="password">
+  </p>
+  <p>
+    <input type="submit" value="Login">
+  </p>
+</form>
+
+
 </body>
 </html>

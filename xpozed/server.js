@@ -1,5 +1,6 @@
 require("dotenv").config();
 var express = require("express");
+var session = require("express-session");
 // var exphbs = require("express-handlebars");
 var db = require("./models");
 var app = express();
@@ -12,6 +13,16 @@ var PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static(__dirname + '/public'));
+app.use(session({
+  secret: 'catdog',
+  resave: false,
+  saveUninitialized: true
+}));
+ 
+app.use(function (req, res, next) {
+ 
+  next()
+});
 
 // similar to handlebars, allows you to use ejs in the views folder
 app.set("views", "./views");
@@ -28,6 +39,8 @@ var syncOptions = { force: false };
 if (process.env.NODE_ENV === "test") {
   syncOptions.force = true;
 };
+
+
 
 // on connection, create a new socket for the new user
 io.on('connection', socket => {

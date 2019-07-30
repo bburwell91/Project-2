@@ -20,7 +20,7 @@ if (messageForm != null) {
         appendMessage(`You: ${comment}`);
         socket.emit('send-chat-message', roomName, comment);
         messageInput.value = '';
-        $.post("/api/chatroom/comments", {message: comment} );
+        $.post("/api/chatroom/comments", {message: comment, id: roomId } );
     });
 }
 
