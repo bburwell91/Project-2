@@ -34,14 +34,22 @@ module.exports = function(app) {
   app.post("/api/chatrooms", function(req, res) {
     console.log(req.body);
     db.Chatroom.create({
-      id: req.body.id,
+      // id: req.body.id,
       name: req.body.name,
-      createdAt: req.body.createdAt,
-      updatedAt: req.body.updatedAt
+      // createdAt: req.body.createdAt,
+      // updatedAt: req.body.updatedAt
     }).then(function(dbChatroom) {
-      res.json(dbChatroom);
+      res.redirect("/" + req.body.name);
     });
   });
+
+  app.post("/api/chatroom/comments", function(req, res) {
+    db.Comments.create({
+      text: req.body.message,
+      UserId: 1,
+      ChatroomId: 1
+    });
+  })
 
   // Delete an example by id
   app.delete("/api/chatrooms/:id", function(req, res) {

@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "password",
-    "database": "xposed_db",
+    "database": "xposed",
     "host": "localhost",
     "dialect": "mysql"
   },

@@ -6,15 +6,19 @@ module.exports = function(app) {
 
   // Load index page
   app.get("/", function(req, res) {
-    res.render("index", { rooms: rooms });
+    db.Chatroom.findAll().then(function(chatrooms){
+      res.render("index", { rooms: chatrooms });
+
+    });
   });
 
   // entering a chatroom
   app.get('/:room', (req, res) => {
     // if not a chatroom, redirect to index
     if (rooms[req.params.room] == null) {
-        return res.redirect('/');
+        // return res.redirect('/');
     };
+
     // else enter chatroom
     res.render('room', { roomName: req.params.room });
   });

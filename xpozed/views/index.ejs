@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Chat App</title>
     <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
     <script defer src="index.js"></script>
 </head>
@@ -20,12 +21,12 @@
         </div>
         <div class="room-form">
             <!-- For each 'room' in the rooms object create a new div and join link -->
-            <% Object.keys(rooms).forEach(room => { %>
-                <div><%= room %></div>
-                <a href="/<%= room %>">Join</a>
+            <% rooms.forEach(function(room) { %>
+                <a href="/<%= room.name %>"><%= room.name %></a>
+                <br>
             <% }) %>
-            <form id="room-form" action="/room" method="POST">
-                <input name="room" type="text" required>
+            <form id="room-form" action="/api/chatrooms" method="POST">
+                <input name="name" type="text" required>
                 <button type="submit">New Room</button>
             </form>
         </div>
