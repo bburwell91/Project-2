@@ -4,8 +4,12 @@ module.exports = function(app) {
 
   rooms = {};
 
-  // Load index page
   app.get("/", function(req, res) {
+    res.render('signup');
+  });
+
+  // Load index page
+  app.get("/home", function(req, res) {
     db.Chatroom.findAll().then(function(chatrooms){
       chatrooms.forEach(element => {
         if (!(element.name in rooms)) {
@@ -17,9 +21,7 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/signup", function(req, res) {
-    res.render('signup');
-  });
+  //signup
 
   // entering a chatroom
   //app.get('/:room/:rid (req, res) => {
@@ -36,11 +38,6 @@ module.exports = function(app) {
             res.render('room', { user: req.session.UNAME, comments: rows, roomName: room.name, roomId: req.query.room });
         });
       });
-
-    // db.Chatroom.findAll({
-    //   where: {
-    //     name: req.params.name
-    //   }
 
     // else enter chatroom
   });

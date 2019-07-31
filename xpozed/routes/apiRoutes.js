@@ -69,7 +69,7 @@ module.exports = function(app) {
     });
   });
 
-  app.post("/signup", function(req, res) {
+  app.post("/", function(req, res) {
     db.Users.create({
       username: req.body.username,
       password: req.body.password
@@ -77,7 +77,7 @@ module.exports = function(app) {
       req.session.UID = user.id;
       req.session.UNAME = user.username;
 
-        res.redirect("/");
+        res.redirect("/home");
     })
   });
 
