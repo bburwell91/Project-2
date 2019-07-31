@@ -27,11 +27,25 @@ module.exports = function(app) {
         // return res.redirect('/');
     };
 
+    console.log(req.params.room, "hello");
     db.Chatroom.findOne({ where : { id : req.params.room }}).then(function(room) {
       //db.Comments.findAll where chatroomId: name.id
+      console.log(room, "room");
+      db.Comments.findAll({
+        where: {
+          chatroomId: room.id
+        }
+      });
       //foreach loop to display line  of the chat
+
       res.render('room', { roomName: room.name, roomId: req.params.room });
     });
+
+    // db.Chatroom.findAll({
+    //   where: {
+    //     name: req.params.name
+    //   }
+
     // else enter chatroom
   });
 

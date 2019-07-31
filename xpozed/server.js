@@ -44,9 +44,13 @@ if (process.env.NODE_ENV === "test") {
 
 // on connection, create a new socket for the new user
 io.on('connection', socket => {
+
   socket.on('new-user', (room, name) => {
       socket.join(room);
+      console.log('room', room)
+      rooms[room] = room
       rooms[room].users[socket.id] = name;
+
       socket.to(room).broadcast.emit('user-connected', name);
   });
   socket.on('send-chat-message', (room, message) => {
