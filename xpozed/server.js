@@ -19,10 +19,12 @@ app.use(session({
   saveUninitialized: true
 }));
  
+/*
 app.use(function (req, res, next) {
  
   next()
 });
+*/
 
 // similar to handlebars, allows you to use ejs in the views folder
 app.set("views", "./views");
@@ -47,8 +49,6 @@ io.on('connection', socket => {
 
   socket.on('new-user', (room, name) => {
       socket.join(room);
-      console.log('room', room)
-      rooms[room] = room
       rooms[room].users[socket.id] = name;
 
       socket.to(room).broadcast.emit('user-connected', name);

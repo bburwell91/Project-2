@@ -62,9 +62,23 @@ module.exports = function(app) {
       } else {
         //start session
         req.session.UID = user.id;
+        req.session.UNAME = user.username;
+        
         res.redirect("/");
       }
     });
+  });
+
+  app.post("/signup", function(req, res) {
+    db.Users.create({
+      username: req.body.username,
+      password: req.body.password
+    }).then(function(user){
+      req.session.UID = user.id;
+      req.session.UNAME = user.username;
+
+        res.redirect("/");
+    })
   });
 
   // Delete an example by id

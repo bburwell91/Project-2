@@ -10,6 +10,7 @@
     <script type="text/javascript">
         const roomName = "<%= roomName %>";
         const roomId = "<%= roomId %>";
+        const uName = "<%= user %>";
     </script>
     <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
     <script defer src="index.js"></script>
@@ -20,7 +21,11 @@
     </style>
 </head>
 <body>
-    <div id="message-container"></div>
+    <div id="message-container">
+        <% comments.forEach(function(comment) { %>
+            <div><strong><%= comment.User.username %>:</strong>&nbsp; <%= comment.text %></div>
+        <% }) %>
+    </div>
     <form id="send-container">
         <input type="text" id="message-input">
         <button type="submit" id="send-button">Send</button>

@@ -10,7 +10,6 @@ module.exports = function(app) {
       chatrooms.forEach(element => {
         if (!(element.name in rooms)) {
           rooms[element.name] = { users: {} };
-          // console.log(element.name);
         }
       });
       console.log(req.session.UID);
@@ -18,28 +17,25 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/signup", function(req, res) {
+    res.render('signup');
+  });
+
   // entering a chatroom
-  //app.get('/:room/:rid', (req, res) => {
-  app.get('/:room', (req, res) => {
+  //app.get('/:room/:rid (req, res) => {
+  app.get('/rooms', (req, res) => {
 
-    // if not a chatroom, redirect to index
-    if (rooms[req.params.room] == null) {
-        // return res.redirect('/');
-    };
-
-    console.log(req.params.room, "hello");
-    db.Chatroom.findOne({ where : { id : req.params.room }}).then(function(room) {
-      //db.Comments.findAll where chatroomId: name.id
-      console.log(room, "room");
-      db.Comments.findAll({
-        where: {
-          chatroomId: room.id
-        }
+      db.Chatroom.findOne({ where : { id : req.query.room }}).then(function(room) {
+        //db.Comments.findAll where chatroomId: name.id
+        db.Comments.findAll({
+          include: [{ model: db.Users }],
+          where: {
+            ChatroomId: room.id
+          }
+        }).then(function(rows) {
+            res.render('room', { user: req.session.UNAME, comments: rows, roomName: room.name, roomId: req.query.room });
+        });
       });
-      //foreach loop to display line  of the chat
-
-      res.render('room', { roomName: room.name, roomId: req.params.room });
-    });
 
     // db.Chatroom.findAll({
     //   where: {
