@@ -4,9 +4,6 @@ const roomContainer = document.getElementById('room-container');
 const messageForm = document.getElementById('send-container');
 const messageInput = document.getElementById('message-input');
 
-// var db = require("../models");
-
-
 
 // actions for the fields that can be submitted. first a prompt asking for your name, and then a listener for the submit button to send messages
 if (messageForm != null) {

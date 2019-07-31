@@ -20,17 +20,11 @@ module.exports = function(app) {
 
   // entering a chatroom
   //app.get('/:room/:rid', (req, res) => {
-  app.get('/:room', (req, res) => {
+  app.get('/chatroom', (req, res) => {
 
-    // if not a chatroom, redirect to index
-    if (rooms[req.params.room] == null) {
-        // return res.redirect('/');
-    };
+    db.Chatroom.findOne({ where : { id : req.query.id }}).then(function(room) {
 
-    db.Chatroom.findOne({ where : { id : req.params.room }}).then(function(room) {
-      //db.Comments.findAll where chatroomId: name.id
-      //foreach loop to display line  of the chat
-      res.render('room', { roomName: room.name, roomId: req.params.room });
+      res.render('room', { roomName: room.name, roomId: req.query.id });
     });
     // else enter chatroom
   });

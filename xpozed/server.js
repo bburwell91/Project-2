@@ -44,11 +44,14 @@ if (process.env.NODE_ENV === "test") {
 
 // on connection, create a new socket for the new user
 io.on('connection', socket => {
-  socket.on('new-user', (room, name) => {
-      socket.join(room);
-      rooms[room].users[socket.id] = name;
-      socket.to(room).broadcast.emit('user-connected', name);
-  });
+  // socket.on('new-user', (room, name) => {
+  //     console.log("ASDFASDFAS", name, room);
+  //     socket.join(room);
+
+  //     // rooms[room] = 
+  //     // rooms[room].users[socket.id] = name;
+  //     // socket.to(room).broadcast.emit('user-connected', name);
+  // });
   socket.on('send-chat-message', (room, message) => {
       socket.to(room).broadcast.emit('chat-message', { message: message, name: rooms[room].users[socket.id] });
   });
