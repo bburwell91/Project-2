@@ -25,7 +25,7 @@ module.exports = function(app) {
 
   // entering a chatroom
   //app.get('/:room/:rid (req, res) => {
-  app.get('/rooms', (req, res) => {
+  app.get('/:room', (req, res) => {
 
       db.Chatroom.findOne({ where : { id : req.query.room }}).then(function(room) {
         //db.Comments.findAll where chatroomId: name.id
