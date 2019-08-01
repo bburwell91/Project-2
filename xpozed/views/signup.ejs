@@ -31,7 +31,7 @@
         <div class="login-container">
             <h1 id="login-header">Prepare to be Xpozed</h1>
             <!-- For each 'room' in the rooms object create a new div and join link -->
-            <form method="post" action="/" class="login-form">
+            <form method="post" action="/api/signup" class="login-form">
                 <p>
                   <!-- <label>Username:</label> -->
                   <input type="text" name="username" placeholder="username">
@@ -41,9 +41,29 @@
                   <input type="password" name="password" placeholder="password">
                 </p>
                 <p>
-                  <input type="submit" value="Login">
+                  <input type="submit" value="Sign Up">
                 </p>
               </form>
+
+              <!-- <div>Already have an account?&nbmsp;</div><a href="/login">Log In</a></div> -->
+              <hr>
+              
+              <div style="color:white; text-align: center; font-weight: bolder">
+                Already have and account?
+              </div>
+
+              <form class="login-form" method="post" action="/api/login">
+                <p> 
+                <input name="username" type="text" placeholder="username"/>
+                </p>
+
+                <p>
+                <input name="password" type="password" placeholder="password"/>
+                </p>
+
+                <button>login</button>
+              </form>
+
         </div>
     </div>
 

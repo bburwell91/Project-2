@@ -32,15 +32,11 @@ module.exports = function(app) {
 
   // Create a new chatroom
   app.post("/api/chatrooms", function(req, res) {
-    console.log(req.body);
     db.Chatroom.create({
-      // id: req.body.id,
-      name: req.body.name,
-      // createdAt: req.body.createdAt,
-      // updatedAt: req.body.updatedAt
+      name: req.body.name
     }).then(function(dbChatroom) {
       rooms[req.body.name] = { users: {} };
-      res.redirect("/" + req.body.name);
+      res.redirect("/rooms?room=" + dbChatroom.id);
     });
   });
 
@@ -57,7 +53,6 @@ module.exports = function(app) {
       where: {username: req.body.username, password: req.body.password }
     }).then(function(user){
       if (!user){
-        console.log("login failed");
         res.redirect("/");
       } else {
         //start session
@@ -69,7 +64,7 @@ module.exports = function(app) {
     });
   });
 
-  app.post("/", function(req, res) {
+  app.post("/api/signup", function(req, res) {
     db.Users.create({
       username: req.body.username,
       password: req.body.password
