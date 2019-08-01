@@ -4,6 +4,7 @@
 }
 
 body {
+  background-color: #000;
   padding: 0;
   margin: 0;
   display: flex;
@@ -15,25 +16,92 @@ body {
   margin: 0 auto;
 }
 
+/******************LOGIN PAGE*************************/
+
+.login-form {
+  margin-top: 25px;
+  text-align: center;
+}
+
+#login-header {
+  color: #FFF;
+  margin-top: 40px;
+  text-align: center;
+}
+
+/****************MAIN PAGE*******************/
+
 .logo-container {
+  background: url("../images/background.jpg");
+  background-position: center;
+  object-fit: fill;
+  background-size: auto; 
   background-color: #e3e3e3;
-  height: 600px;
+  height: 200px;
   width: 100%;
   margin: 0 auto;
   display: block;
 }
 
 .logo {
+  background: url("../images/background-font.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 120px;
   margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
+  padding-top: 70px;
   text-align: center;
 }
 
 .room-form {
-  float: left;
   display: block;
+  line-height: 1.5;
+  text-align: center;
+  width: 100%;
+}
+
+.room-form a {
+  color: salmon;
+  font-family: 'Raleway', sans-serif;
+  font-size: 28px;
+  text-decoration: none;
+  margin: 20px 0;
+}
+
+#room-form {
+  margin: 30px 0;
+  text-align: center;
+}
+
+#room-form input {
+  width: 30%;
+  height: 30px;
+}
+
+#room-form button {
+  height: 30px;
+  background-color: mediumpurple;
+  border: none;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.otherside {
+  color: salmon;
+  font-size: 50px;
+  font-family: 'Waiting for the Sunrise', cursive;
+  font-weight: bolder;
+  transform:rotate(-180deg);
+  direction: rtl;
+  unicode-bidi: bidi-override; 
+  margin-top: 20px;
+  text-align: center;
+}
+
+.otherside:hover {
+  transform:rotate(0deg);
+  direction: ltr;
+  unicode-bidi: normal;
 }
 
 /*****************************************CHAT ROOM*********************************************/
@@ -70,7 +138,7 @@ body {
 }
 
 #message-container {
-  background-color: #FFF;
+  background-color: #e3e3e3;
   margin-top: 30px;
   height: 630px;
   overflow: scroll;
@@ -80,7 +148,7 @@ body {
 }
 
 #message-container div {
-  background-color: #FFA;
+  background-color: #FFFF9F;
   box-sizing: border-box;
   clear: both;
   display: block;
@@ -91,8 +159,7 @@ body {
 }
 
 #message-container div:nth-child(2n) {
-  background-color: #FFF;
-  border-radius: 20px;
+  background-color: #FFC7AB;
   clear: both;
   display: block;
   float: right;

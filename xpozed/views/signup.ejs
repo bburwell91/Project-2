@@ -5,11 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Chat App</title>
-    <link rel="stylesheet" type="text/css" href="/styles/loginpage.css">
+    <link rel="stylesheet" type="text/css" href="/styles/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
     <script defer src="index.js"></script>
+    <style>
+      body {
+        background-color: #000;
+      }
+    </style>
 </head>
 
 <body background="/images/login-background.jpg">
@@ -23,7 +28,8 @@
         </div>
         <h1>Sign Up</h1> -->
 
-        <div class="room-form">
+        <div class="login-container">
+            <h1 id="login-header">Prepare to be Xpozed</h1>
             <!-- For each 'room' in the rooms object create a new div and join link -->
             <form method="post" action="/" class="login-form">
                 <p>
@@ -53,12 +59,8 @@
 
 <!-- <head>
     <link rel="stylesheet" type="text/css" href="loginpage.css">
-
     <script src="loginjava.js"></script>
 </head>
-
-
-
 <div class="login-page">
     <div class="form">
       <form class="register-form">

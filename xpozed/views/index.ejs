@@ -9,15 +9,21 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
     <script defer src="index.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Faster+One|Raleway|Indie+Flower|Lacquer|Permanent+Marker|Waiting+for+the+Sunrise&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <div id="container">
         <div class="logo-container" style="margin-bottom:0">
             <div class="logo">
-                <h1>XPOSED</h1>
-                <p>WELCOME TO THE OTHERSIDE</p> 
             </div>
+        </div>
+        <h1 class="otherside">WELCOME TO THE OTHERSIDE</h1>
+        <div id="form-container">
+        <form id="room-form" action="/api/chatrooms" method="POST">
+          <input name="name" type="text" required>
+          <button type="submit">New Room</button>
+        </form>
         </div>
         <div class="room-form">
             <!-- For each 'room' in the rooms object create a new div and join link -->
@@ -25,10 +31,6 @@
                 <a href="/rooms?room=<%= room.id %>"><%= room.name %></a>
                 <br>
             <% }) %>
-            <form id="room-form" action="/api/chatrooms" method="POST">
-                <input name="name" type="text" required>
-                <button type="submit">New Room</button>
-            </form>
         </div>
     </div>
    
