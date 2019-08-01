@@ -19,6 +19,12 @@
             </div>
         </div>
         <h1 class="otherside">WELCOME TO THE OTHERSIDE</h1>
+
+        <div style="color:white; text-align: center; font-weight: bolder">
+          username: <%= username %> 
+          <a href="/api/logout">     logout</a>
+        </div>
+
         <div id="form-container">
         <form id="room-form" action="/api/chatrooms" method="POST">
           <input name="name" type="text" required>
@@ -33,6 +39,8 @@
             <% }) %>
         </div>
     </div>
+
+  
    
 
 <!-- <h1>Login</h1>

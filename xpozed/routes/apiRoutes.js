@@ -53,7 +53,6 @@ module.exports = function(app) {
       where: {username: req.body.username, password: req.body.password }
     }).then(function(user){
       if (!user){
-        console.log("login failed");
         res.redirect("/");
       } else {
         //start session
@@ -65,7 +64,7 @@ module.exports = function(app) {
     });
   });
 
-  app.post("/", function(req, res) {
+  app.post("/api/signup", function(req, res) {
     db.Users.create({
       username: req.body.username,
       password: req.body.password

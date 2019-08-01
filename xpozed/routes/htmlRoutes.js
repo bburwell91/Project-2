@@ -5,7 +5,11 @@ module.exports = function(app) {
   rooms = {};
 
   app.get("/", function(req, res) {
-    res.render('signup');
+    if (req.session.UID) {
+      res.redirect("/home");
+    } else {
+      res.render('signup');
+    }
   });
 
   // Load index page
@@ -16,8 +20,7 @@ module.exports = function(app) {
           rooms[element.name] = { users: {} };
         }
       });
-      console.log(req.session.UID);
-      res.render("index", { rooms: chatrooms, message: "" });
+      res.render("index", { rooms: chatrooms, message: "", username: req.session.UNAME });
     });
   });
 
