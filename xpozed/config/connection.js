@@ -3,7 +3,7 @@
 // *********************************************************************************
 
 // Dependencies
-// var Sequelize = require("sequelize");
+var Sequelize = require("sequelize");
 // var mysql = require("mysql");
 // var connection;
 
