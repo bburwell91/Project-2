@@ -58,7 +58,6 @@ module.exports = function(app) {
         //start session
         req.session.UID = user.id;
         req.session.UNAME = user.username;
-        
         res.redirect("/");
       }
     });
